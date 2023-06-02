@@ -18,7 +18,7 @@ app.use(morgan('combined'));
 //Templates engine
 app.engine('hbs', handlebars.engine({ extname: '.hbs' }));
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'resources/views'));
+app.set('views', path.join(__dirname, 'resources','views'));
 
 //Read form data
 app.use(express.urlencoded({ extended: true }));
@@ -28,5 +28,5 @@ app.use(express.json());
 route(app);
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+    console.log(`App listening on port ${port}`);
 });
