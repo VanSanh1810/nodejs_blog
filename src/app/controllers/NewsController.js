@@ -1,15 +1,15 @@
 const Course = require('../models/Course')
+const {multipleMongooseToObject} = require('../../util/mongoose')
 class NewsController {
-    async index(req, res) {
+    index(req, res, next) {
 
         // res.render('home');
 
-        const query = Course.find({});
-        // Query hasn't been executed yet, so Mongoose hasn't casted the filter.
-        query.getFilter();
-  
-        const doc = await query.exec();
-        res.json(doc);
+        Course.find({})
+            .then(course => {
+                res.render('course',{course: multipleMongooseToObject(course)}); //
+            })
+            .catch(err => next(err));
     }
 }
 
